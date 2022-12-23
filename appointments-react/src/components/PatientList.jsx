@@ -9,7 +9,7 @@ function PatientList() {
           Administra tus {''}
           <span className="text-indigo-600 font-bold">Pacientes y Citas</span>
       </p>
-
+      
       <Patients />
       <Patients />
       <Patients />
