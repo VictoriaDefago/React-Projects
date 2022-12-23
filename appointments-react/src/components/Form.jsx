@@ -8,7 +8,7 @@ function Form() {
           <span className="text-indigo-600 font-bold">Adminístralos</span>
         </p>
 
-        <form className="bg-white shadow-md rounded-lg py-10 px-5">
+        <form className="bg-white shadow-md rounded-lg py-10 px-5 mb-10">
           <div>
             <label htmlFor="pet" className="font-bold text-gray-700 uppercase block">Nombre Mascota</label>
             <input type="text" placeholder="Nombre de la Mascota" id="pet"
