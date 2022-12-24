@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react'
+import Error from './Error'
 
-function Form() {
+function Form({ patients, setPatients }) {
 
   const [name, setName] = useState('')
   const [owner, setOwner] = useState('')
@@ -18,6 +19,24 @@ function Form() {
       return
     }
     setError(false)
+
+    const patient = {
+      name,
+      owner,
+      email,
+      dischargeDate,
+      symptoms
+    }
+
+    console.log(patient)
+
+    setPatients([...patients, patient])
+
+    setName('')
+    setOwner('')
+    setEmail('')
+    setDischargeDate('')
+    setSymptons('')
   }
 
   return (
@@ -31,13 +50,7 @@ function Form() {
 
         <form className="bg-white shadow-md rounded-lg py-10 px-5 mb-10 mx-5" onSubmit={handleSubmit}>
 
-          { error && 
-            <div className='bg-red-800 text-white p-2 text-center uppercase font-bold mb-5 rounded-md'>
-              <p>
-                Todos los campos son obligatorios
-              </p>
-            </div>
-          }
+          { error && <Error><p>Todos los campos son obligatorios</p></Error>}
 
           <div>
             <label htmlFor="pet" className="font-bold text-gray-700 uppercase block">Nombre Mascota</label>
