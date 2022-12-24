@@ -1,27 +1,38 @@
-const Patients = () => {
+const Patients = ({ patient, setPatient }) => {
+
+    const { name, owner, email, dischargeDate, symptoms } = patient
+
   return (
         <div className="bg-white mx-5 my-10 shadow-md px-5 py-10 rounded-xl">
 
             <p className="font-bold mb-3 text-gray-700 uppercase">
             Nombre: {''}
-                <span className="font-normal normal-case">Hook</span>
+                <span className="font-normal normal-case">{name}</span>
             </p>
             <p className="font-bold mb-3 text-gray-700 uppercase">
             Propietario: {''}
-                <span className="font-normal normal-case">Victoria</span>
+                <span className="font-normal normal-case">{owner}</span>
             </p>
             <p className="font-bold mb-3 text-gray-700 uppercase">
             Email: {''}
-                <span className="font-normal normal-case">correo@gmail.com</span>
+                <span className="font-normal normal-case">{email}</span>
             </p>
             <p className="font-bold mb-3 text-gray-700 uppercase">
             Fecha Alta: {''}
-                <span className="font-normal normal-case">23 Diciembre 2022</span>
+                <span className="font-normal normal-case">{dischargeDate}</span>
             </p>
             <p className="font-bold mb-3 text-gray-700 uppercase">
             Síntomas: {''}
-                <span className="font-normal normal-case">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores culpa inventore repellendus repudiandae molestias sapiente, numquam, facilis cupiditate quam debitis asperiores beatae, omnis fuga vitae eligendi maxime veritatis minima natus?</span>
+                <span className="font-normal normal-case">{symptoms}</span>
             </p>
+
+            <div className="flex justify-around mt-10">
+                <button type="button" className="py-2 px-10 bg-indigo-600 hover:bg-indigo-700 uppercase font-bold rounded-lg text-white"
+                onClick={() => setPatient(patient)}>Editar</button>
+                
+                <button type="button" className="py-2 px-10 bg-red-600 hover:bg-red-700 uppercase
+                font-bold rounded-lg text-white">Eliminar</button>
+            </div>
 
         </div>
   )
