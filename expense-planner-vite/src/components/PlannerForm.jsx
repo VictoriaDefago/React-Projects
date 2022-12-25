@@ -1,12 +1,31 @@
-const PlannerForm = ({ expense, setExpense }) => {
+import { useState } from "react"
+import Message from "./Message"
+
+const PlannerForm = ({ expense, setExpense, setExpenseIsValid }) => {
+
+    const [message, setMessage] = useState('')
+
+    const handleExpense = e => {
+        e.preventDefault()
+        if(!expense || expense < 0){
+            setMessage('No es un presupuesto válido')
+            return
+        }
+        setMessage('')
+        setExpenseIsValid(true)
+    }
+
   return (
     <div className="contenedor-presupuesto contenedor sombra">
-        <form className="formulario">
+        <form className="formulario" onSubmit={handleExpense}>
             <div className="campo">
                 <label>Definir Presupuesto</label>
-                <input type="text" className="nuevo-presupuesto" placeholder="Añade tu Presupuesto" 
+                <input type="number" className="nuevo-presupuesto" placeholder="Añade tu Presupuesto" 
                 value={expense} onChange={ e => setExpense(e.target.value) } />
                 <input type="submit" value="Añadir" />
+
+                {message && <Message type="error">{message}</Message>}
+
             </div>
         </form>
     </div>
