@@ -1,14 +1,15 @@
 import PlannerForm from "./PlannerForm"
+import ExpenseControl from "./ExpenseControl"
 
-const Header = ({ expense, setExpense, expenseIsValid, setExpenseIsValid }) => {
+const Header = ({ budget, setBudget, budgetIsValid, setBudgetIsValid }) => {
   return (
     <header>
         <h1>Planificador de Gastos</h1>
 
-        { expenseIsValid ? (
-          <h1>test</h1>
+        { budgetIsValid ? (
+          <ExpenseControl budget={budget} />
         ) : (
-          <PlannerForm expense={expense} setExpense={setExpense} setExpenseIsValid={setExpenseIsValid} />
+          <PlannerForm budget={budget} setBudget={setBudget} setBudgetIsValid={setBudgetIsValid} />
         )}
 
     </header>
