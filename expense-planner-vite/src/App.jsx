@@ -52,8 +52,8 @@ function App() {
   }
 
   return (
-    <div className={modal && 'fijar'}>
-      <Header budget={budget} setBudget={setBudget} budgetIsValid={budgetIsValid} setBudgetIsValid={setBudgetIsValid} />
+    <div className={modal ? 'fijar' : ''}>
+      <Header budget={budget} setBudget={setBudget} budgetIsValid={budgetIsValid} setBudgetIsValid={setBudgetIsValid} expenses={expenses} />
 
       { budgetIsValid && (
         <>
