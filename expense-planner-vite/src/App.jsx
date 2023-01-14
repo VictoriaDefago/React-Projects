@@ -6,13 +6,13 @@ import newExpenseIcon from './img/nuevo-gasto.svg'
 
 function App() {
 
-  const [budget, setBudget] = useState(0)
+  const [budget, setBudget] = useState(Number(localStorage.getItem('budget')) ?? 0)
   const [budgetIsValid, setBudgetIsValid] = useState(false)
 
   const [modal, setModal] = useState(false)
   const [animateModal, setAnimateModal] = useState(false)
 
-  const [expenses, setExpenses] = useState([])
+  const [expenses, setExpenses] = useState(localStorage.getItem('expenses') ? JSON.parse(localStorage.getItem('expenses')) : [])
 
   const [expenseToEdit, setExpenseToEdit] = useState({})
 
@@ -25,6 +25,24 @@ function App() {
       }, 500)
     }
   }, [expenseToEdit])
+
+
+  useEffect( () => {
+    localStorage.setItem('budget', budget ?? 0)
+  }, [budget])
+
+
+  useEffect( () => {
+    localStorage.setItem('expenses', JSON.stringify(expenses) ?? [])
+  }, [expenses])
+  
+
+  useEffect( () => {
+    const budgetLS = Number(localStorage.getItem('budget')) ?? 0
+    if(budgetLS > 0){
+      setBudgetIsValid(true)
+    }
+  }, [])
 
 
   const handleModal = () => {
