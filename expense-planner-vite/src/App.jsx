@@ -41,6 +41,7 @@ function App() {
     if(exp.id){
       const editedExpenses = expenses.map( expState => expState.id === exp.id ? exp : expState)
       setExpenses(editedExpenses)
+      setExpenseToEdit({})
     } else {
       exp.id = generateID()
       exp.date = Date.now()
@@ -70,6 +71,11 @@ function App() {
     return newDate.toLocaleDateString('es-ES', options)
   }
 
+  const deleteExpense = id => {
+    const updatedExpenses = expenses.filter( expState => expState.id !== id)
+    setExpenses(updatedExpenses)
+  }
+
   return (
     <div className={modal ? 'fijar' : ''}>
       <Header budget={budget} setBudget={setBudget} budgetIsValid={budgetIsValid} setBudgetIsValid={setBudgetIsValid} expenses={expenses} />
@@ -77,7 +83,8 @@ function App() {
       { budgetIsValid && (
         <>
           <main>
-            <ExpensesList expenses={expenses} formatDate={formatDate} setExpenseToEdit={setExpenseToEdit} />
+            <ExpensesList expenses={expenses} formatDate={formatDate} setExpenseToEdit={setExpenseToEdit} 
+            deleteExpense={deleteExpense} />
           </main>
           <div className='nuevo-gasto'>
             <img src={newExpenseIcon} alt="New Expense Icon" onClick={handleModal} />
@@ -86,7 +93,7 @@ function App() {
       )}
 
       { modal && (<Modal setModal={setModal} setAnimateModal={setAnimateModal} animateModal={animateModal} 
-      saveExpense={saveExpense} expenseToEdit={expenseToEdit} />)}
+      saveExpense={saveExpense} expenseToEdit={expenseToEdit} setExpenseToEdit={setExpenseToEdit} />)}
 
     </div>
   )

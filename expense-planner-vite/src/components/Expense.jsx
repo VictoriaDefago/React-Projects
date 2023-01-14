@@ -16,9 +16,9 @@ import healthIcon from '../img/icono_salud.svg'
 import suscpIcon from '../img/icono_suscripciones.svg'
 
 
-const Expense = ({ exp, formatDate, setExpenseToEdit }) => {
+const Expense = ({ exp, formatDate, setExpenseToEdit, deleteExpense }) => {
 
-    const {category, name, qty, date} = exp
+    const {category, name, qty, date, id} = exp
 
     const icons = {
         ahorro: savingIcon,
@@ -40,7 +40,7 @@ const Expense = ({ exp, formatDate, setExpenseToEdit }) => {
 
     const trailingActions = () => (
         <TrailingActions>
-            <SwipeAction onClick={() => console.log('swipe action triggered')} destructive={true} >
+            <SwipeAction onClick={() => deleteExpense(id)} destructive={true} >
                 Eliminar
             </SwipeAction>
         </TrailingActions>
