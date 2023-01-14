@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import Header from './components/Header'
 import ExpensesList from './components/ExpensesList'
 import Modal from './components/Modal'
+import Filters from './components/Filters'
 import newExpenseIcon from './img/nuevo-gasto.svg'
 
 function App() {
@@ -12,9 +13,12 @@ function App() {
   const [modal, setModal] = useState(false)
   const [animateModal, setAnimateModal] = useState(false)
 
-  const [expenses, setExpenses] = useState(localStorage.getItem('expenses') ? JSON.parse(localStorage.getItem('expenses')) : [])
+  const [expenses, setExpenses] = useState(localStorage.getItem('expensesLS') ? JSON.parse(localStorage.getItem('expensesLS')) : [])
 
   const [expenseToEdit, setExpenseToEdit] = useState({})
+
+  const [filter, setFilter] = useState('')
+  const [filteredExp, setFilteredExp] = useState([])
 
   useEffect(() => {
     if(Object.keys(expenseToEdit).length > 0){
@@ -33,9 +37,17 @@ function App() {
 
 
   useEffect( () => {
-    localStorage.setItem('expenses', JSON.stringify(expenses) ?? [])
+    localStorage.setItem('expensesLS', JSON.stringify(expenses) ?? [])
   }, [expenses])
-  
+
+
+  useEffect( () => {
+    if(filter){
+      const filteredExpenses = expenses.filter( expState => expState.category === filter)
+      setFilteredExp(filteredExpenses)
+    }
+  }, [filter])
+
 
   useEffect( () => {
     const budgetLS = Number(localStorage.getItem('budget')) ?? 0
@@ -101,8 +113,9 @@ function App() {
       { budgetIsValid && (
         <>
           <main>
+            <Filters filter={filter} setFilter={setFilter} />
             <ExpensesList expenses={expenses} formatDate={formatDate} setExpenseToEdit={setExpenseToEdit} 
-            deleteExpense={deleteExpense} />
+            deleteExpense={deleteExpense} filter={filter} filteredExp={filteredExp}/>
           </main>
           <div className='nuevo-gasto'>
             <img src={newExpenseIcon} alt="New Expense Icon" onClick={handleModal} />
