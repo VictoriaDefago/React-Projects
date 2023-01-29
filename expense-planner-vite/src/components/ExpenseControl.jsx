@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'
 
-const ExpenseControl = ({ budget, expenses }) => {
+const ExpenseControl = ({ budget, setBudget, setBudgetIsValid, expenses, setExpenses }) => {
 
     const [available, setAvailable] = useState(0)
     const [spent, setSpent] = useState(0)
@@ -27,20 +27,33 @@ const ExpenseControl = ({ budget, expenses }) => {
         return qty.toLocaleString("en-US", {style:"currency", currency:"USD"})   
     }
 
+    const hangdleResetApp = () => {
+        const result = confirm('¿Deseas resetear presupuesto y gastos?')
+        if(result){
+            setExpenses([])
+            setBudget(0)
+            setBudgetIsValid(false)
+        }
+    }
+
+
   return (
     <div className="contenedor-presupuesto contenedor sombra dos-columnas">
         <div>
             <CircularProgressbar value={percentage} styles={buildStyles({
-                pathColor: '#3B82F6',
+                pathColor: percentage > 100 ? '#DC2626' : '#3B82F6',
                 trailColor: '#F5F5F5',
-                textColor: '#3B82F6',
+                textColor: percentage > 100 ? '#DC2626' : '#3B82F6',
             })} text={`${percentage}% Gastado`} />
         </div>
         <div className="contenido-presupuesto">
+            <button className='reset-app' type='button' onClick={hangdleResetApp} >
+                Resetear App
+            </button>
             <p>
                 <span>Presupuesto:</span>{' '}{formatQty(Number(budget))}
             </p>
-            <p>
+            <p className={`${available < 0 ? 'negativo' : ''}`}>
                 <span>Disponible:</span>{' '}{formatQty(available)} 
             </p>            
             <p>
