@@ -17,11 +17,11 @@ const Select = styled.select`
 `
 
 
-const useSelectCoins = (label, options) => {
+const useSelect = (label, options) => {
 
     const [state, setState] = useState('')
 
-    const SelectLabel = () => (
+    const SelectL = () => (
         <>
             <Label> {label} </Label>
             <Select value={state} onChange={ e => {setState(e.target.value)} } >
@@ -33,7 +33,7 @@ const useSelectCoins = (label, options) => {
         </>
     )
 
-    return [ state, SelectLabel ]
+    return [ state, SelectL ]
 }
 
-export default useSelectCoins
+export default useSelect
