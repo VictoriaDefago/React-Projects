@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import styled from "@emotion/styled"
 import Form from "./components/Form"
+import Result from "./components/Result"
 import CryptoImg from './img/imagen-criptos.png'
 
 const Container = styled.div`
@@ -15,7 +16,7 @@ const Container = styled.div`
 `
 const Image = styled.img`
   max-width: 400px;
-  width: 80%;
+  width: 70%;
   margin: 100px auto 0 auto;
 `
 const Heading = styled.h1`
@@ -61,6 +62,7 @@ function App() {
       <div>
         <Heading>Cotiza Criptomonedas al Instante</Heading>
         <Form setCoins={setCoins} />
+        {result.PRICE && <Result result={result} />}
       </div>
     </Container>
 
