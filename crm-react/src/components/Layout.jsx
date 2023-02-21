@@ -21,7 +21,7 @@ const Layout = () => {
               </Link>
             </nav>
         </aside>
-        <main className='md:w-3/4 md:h-screen overflow-scroll m-4'>
+        <main className='md:w-3/4 md:h-screen overflow-scroll m-10'>
             <Outlet />
         </main>
     </div>
