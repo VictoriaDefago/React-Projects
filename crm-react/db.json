@@ -9,13 +9,6 @@
       "id": 1
     },
     {
-      "id": 2,
-      "name": "Lucia",
-      "phone": 138198313,
-      "email": "lucia@gmail.com",
-      "company": "Google"
-    },
-    {
       "id": 3,
       "name": "Josue",
       "phone": 31983913,
@@ -35,14 +28,6 @@
       "phone": 1398198938,
       "email": "pedro@gmail.com",
       "company": "Dino Cloud"
-    },
-    {
-      "name": "vic",
-      "company": "accenture",
-      "email": "defagotvictoria@gmail.com",
-      "phone": "455677",
-      "notes": "test",
-      "id": 6
     }
   ]
 }
